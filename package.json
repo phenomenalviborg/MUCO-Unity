@@ -1,14 +1,18 @@
 {
-  "name": "com.phenominalvibor.muco",
+  "name": "com.phenominalviborg.muco",
   "version": "0.0.0",
   "displayName": "MUCO",
   "description": "MUCO Core Package",
   "unity": "6000.0",
   "unityRelease": "55f1",
   "dependencies": {
- },
- "keywords": [
-    "MOCO",
+    "com.unity.adaptiveperformance": "5.1.5",
+    "com.unity.xr.openxr": "1.15.1",
+    "com.unity.xr.hands": "1.5.1",
+    "com.unity.addressables": "2.6.0"
+  },
+  "keywords": [
+    "MUCO",
     "VR"
   ],
   "author": {
