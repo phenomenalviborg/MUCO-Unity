@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2de0db73af6c4614ebd6a24cef1d4bc7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cap: {instanceID: 0}
+  - setColor: {instanceID: 0}
+  - pressedSound: {fileID: 8300000, guid: 8e25e19e45a7248f89da16248831ffb4, type: 3}
+  - unpressedSoud: {fileID: 8300000, guid: f055d0dd82743459b88320cad68844ff, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
