@@ -273,10 +273,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 683606110}
     - target: {fileID: 1747476154903912935, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
-      propertyPath: resolveIp
-      value: 
-      objectReference: {fileID: 991890007}
-    - target: {fileID: 1747476154903912935, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
       propertyPath: ghostSystem.ghostHandPrefabs.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -407,16 +403,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6133374967804466640, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 207954220}
-    - targetCorrespondingSourceObject: {fileID: 1747476154903912931, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 991890007}
   m_SourcePrefab: {fileID: 100100000, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
 --- !u!114 &400554365 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1747476154903912936, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
   m_PrefabInstance: {fileID: 373595381}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 991889998}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab4f9bd28d3f1a641ba9dbdd508ae975, type: 3}
@@ -736,25 +729,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b4b4f0bc1c1d9438b453b533e04972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &991889998 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1747476154903912931, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
-  m_PrefabInstance: {fileID: 373595381}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &991890007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 991889998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14b7bd7ef0214b14981e6e24a3fed941, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ip: 
-  port: 0
 --- !u!114 &1262118739 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3905764272247469074, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
