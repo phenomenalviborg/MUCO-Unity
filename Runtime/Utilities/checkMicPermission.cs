@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Android;
 
@@ -7,7 +5,7 @@ namespace Muco {
     
 public class checkMicPermission : MonoBehaviour
 {
-     internal void PermissionCallbacks_PermissionDeniedAndDontAskAgain(string permissionName)
+    internal void PermissionCallbacks_PermissionDeniedAndDontAskAgain(string permissionName)
     {
         Debug.Log($"{permissionName} PermissionDeniedAndDontAskAgain");
     }

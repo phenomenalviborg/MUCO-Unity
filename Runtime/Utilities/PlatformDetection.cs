@@ -12,34 +12,27 @@ namespace Muco {
 
     public static class PlatformExtensions {
         public static bool IsHeadset(this Platform platform) {
-            switch (platform) {
-                case Platform.Quest2:
-                case Platform.Pico4:
-                    return true;
-                default:
-                    return false;
-            }
+            return platform switch
+            {
+                Platform.Quest2 or Platform.Pico4 => true,
+                _ => false,
+            };
         }
 
         public static bool IsAndroid(this Platform platform) {
-            switch (platform) {
-                case Platform.Quest2:
-                case Platform.Pico4:
-                case Platform.OtherAndroid:
-                    return true;
-                default:
-                    return false;
-            }
+            return platform switch
+            {
+                Platform.Quest2 or Platform.Pico4 or Platform.OtherAndroid => true,
+                _ => false,
+            };
         }
 
         public static bool IsEditor(this Platform platform) {
-            switch (platform) {
-                case Platform.WindowsEditor:
-                case Platform.OsxEditor:
-                    return true;
-                default:
-                    return false;
-            }
+            return platform switch
+            {
+                Platform.WindowsEditor or Platform.OsxEditor => true,
+                _ => false,
+            };
         }
     }
 
@@ -88,24 +81,14 @@ namespace Muco {
 
         public static bool PlatformCriteriaSatisfied(PlatformCriteria criteria) {
             var developerMode = DeveloperMode.TheDeveloperMode;
-            bool platformIsMet;
-            switch (ThePlatform) {
-                case Platform.WindowsEditor:
-                    platformIsMet = criteria.windowsEditor;
-                    break;
-                case Platform.OsxEditor:
-                    platformIsMet = criteria.osxEditor;
-                    break;
-                case Platform.Quest2:
-                    platformIsMet = criteria.quest2;
-                    break;
-                case Platform.Pico4:
-                    platformIsMet = criteria.pico4;
-                    break;
-                default:
-                    platformIsMet = false;
-                    break;
-            }
+            var platformIsMet = ThePlatform switch
+            {
+                Platform.WindowsEditor => criteria.windowsEditor,
+                Platform.OsxEditor => criteria.osxEditor,
+                Platform.Quest2 => criteria.quest2,
+                Platform.Pico4 => criteria.pico4,
+                _ => false,
+            };
             bool developerModeIsMet;
             if (developerMode.isOn) {
                 developerModeIsMet = criteria.developer;

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine.XR;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,11 +27,8 @@ namespace Muco {
         public VrInputData vrInputData;
 
         public void Register(DeveloperModeCallback callback) {
-            if (callbacks == null)
-                callbacks = new List<DeveloperModeCallback>();
-
             callback(isOn);
-
+            callbacks ??= new List<DeveloperModeCallback>();
             callbacks.Add(callback);
         }
 
@@ -53,8 +49,8 @@ namespace Muco {
         }
 
         void Update() {
-            vrInputData.lCtrl.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out bool leftTriggerIsPressed);
-            vrInputData.rCtrl.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out bool rightTriggerIsPressed);
+            vrInputData.LCtrl.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out bool leftTriggerIsPressed);
+            vrInputData.RCtrl.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out bool rightTriggerIsPressed);
             bool toggleButtonIsPressed = leftTriggerIsPressed || rightTriggerIsPressed || Keyboard.current.lKey.wasPressedThisFrame;
 
             var toggleButtonDown = toggleButtonIsPressed && !toggleButtonWasPressed;
