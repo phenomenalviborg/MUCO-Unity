@@ -19,5 +19,6 @@
     "name": "Phenominal Vibor",
     "email": "info@phenominalvibor.com",
     "url": "https://www.phenomenalviborg.com/"
-  }
+  },
+  "license": "LGPL-3.0-or-later"
 }
