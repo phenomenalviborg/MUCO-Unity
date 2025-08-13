@@ -96,6 +96,10 @@ namespace Muco {
             }
             else {
                 var prefabIndex = data[0];
+                if (prefabIndex >= interactiblePrefabs.Count) {
+                    Debug.Log("Unknown prefab index");
+                    return;
+                }
                 var prefab = interactiblePrefabs[prefabIndex];
                 var interactible = Instantiate(prefab);
                 var interactibleId = (ushort)(key & 0xFFFF);
