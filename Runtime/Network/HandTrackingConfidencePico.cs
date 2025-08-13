@@ -1,8 +1,6 @@
 using UnityEngine;
-using Muco;
-// using Unity.XR.PXR;
 
-namespace Modo {
+namespace Muco {
     public class HandTrackingConfidencePico : HandTrackingConfidenceProvider {
         // public Unity.XR.PXR.HandType handType;
         // private HandJointLocations handJointLocations = new HandJointLocations();

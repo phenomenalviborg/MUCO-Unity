@@ -1,7 +1,6 @@
 using Antilatency.SDK;
 using UnityEngine;
 
-
 namespace Muco {
     public class SetupAntilatency : MonoBehaviour {
         public Player player;

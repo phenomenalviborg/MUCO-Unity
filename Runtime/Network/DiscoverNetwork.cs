@@ -1,36 +1,40 @@
 using UnityEngine;
 
-public class DiscoverNetwork : ResolveIp {
+namespace Muco {
+    public class DiscoverNetwork : ResolveIp
+    {
+        public string serviceType;
+        NetworkDiscoverer networkDiscoverer;
 
-    public string serviceType;
-    NetworkDiscoverer networkDiscoverer;
+        public override Address Poll()
+        {
+            if (serviceType == "")
+                Debug.Log("Service Type not specified!!!");
 
-    public override Address Poll() {
-        if (serviceType == "")
-            Debug.Log("Service Type not specified!!!");
+            if (networkDiscoverer == null)
+                networkDiscoverer = new NetworkDiscoverer(serviceType);
 
-        if (networkDiscoverer == null)
-            networkDiscoverer = new NetworkDiscoverer(serviceType);
+            var result = networkDiscoverer.Poll();
 
-        var result = networkDiscoverer.Poll();
+            if (result == null)
+                return null;
 
-        if (result == null)
-            return null;
+            networkDiscoverer.Dispose();
+            networkDiscoverer = null;
 
-        networkDiscoverer.Dispose();
-        networkDiscoverer = null;
+            var split = result.Split(":");
 
-        var split = result.Split(":");
+            if (split.Length < 2)
+                return null;
 
-        if (split.Length < 2)
-            return null;
+            string ip = split[0];
+            int port = int.Parse(split[1]);
 
-        string ip = split[0];
-        int port = int.Parse(split[1]);
-
-        return new Address {
-            ip = ip,
-            port = port,
-        };
+            return new Address
+            {
+                ip = ip,
+                port = port,
+            };
+        }
     }
 }
