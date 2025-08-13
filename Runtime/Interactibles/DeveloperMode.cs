@@ -24,7 +24,6 @@ namespace Muco {
         List<DeveloperModeCallback> callbacks;
 
         bool toggleButtonWasPressed;
-        public VrInputData vrInputData;
 
         public void Register(DeveloperModeCallback callback) {
             callback(isOn);
@@ -49,8 +48,8 @@ namespace Muco {
         }
 
         void Update() {
-            vrInputData.LCtrl.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out bool leftTriggerIsPressed);
-            vrInputData.RCtrl.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out bool rightTriggerIsPressed);
+            VrInputData.TheVrInputData.LCtrl.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out bool leftTriggerIsPressed);
+            VrInputData.TheVrInputData.RCtrl.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out bool rightTriggerIsPressed);
             bool toggleButtonIsPressed = leftTriggerIsPressed || rightTriggerIsPressed || Keyboard.current.lKey.wasPressedThisFrame;
 
             var toggleButtonDown = toggleButtonIsPressed && !toggleButtonWasPressed;

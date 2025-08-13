@@ -10,6 +10,8 @@ namespace Muco {
                 var roomManager = FindFirstObjectByType<RoomManager>();
                 if (roomManager == null)
                     Debug.Log("Could not find RoomManager");
+                if(!roomManager.isInitialized)
+                    roomManager.Init();
                 roomManager.Init();
                 _roomManager = roomManager;
                 return roomManager;
@@ -18,11 +20,15 @@ namespace Muco {
         [HideInInspector] public Room[] rooms;
 
         public Room[] staticRooms;
+        public bool isInitialized;
 
         public virtual void Init() {
+            if (isInitialized)
+                return;
             var roomCount = staticRooms.Length;
             rooms = new Room[roomCount];
             InitializeStaticRooms();
+            isInitialized = true;
         }
 
         public void InitializeStaticRooms() {

@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 5348874366587426022}
   - component: {fileID: 555922857835541676}
   m_Layer: 0
-  m_Name: PlayerIndicatorBasic
+  m_Name: PlayerRemoteIndicatorBasic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

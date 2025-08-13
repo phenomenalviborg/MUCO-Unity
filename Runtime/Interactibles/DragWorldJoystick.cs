@@ -8,7 +8,6 @@ public class DragWorldJoystick : MonoBehaviour
     public DragWorld dragWorld;
     public Transform fwdAxis;
     public Transform rightAxis;
-    public VrInputData vrInputData;
 
     public bool rightZeroOnY = true;
     public bool isFlying = false;
@@ -28,15 +27,15 @@ public class DragWorldJoystick : MonoBehaviour
         }
         VrDebug.SetValue("Devices", "Devices", debugString);
 
-        vrInputData.LCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out bool resetPositionButtonIsPressedLeft);
-        vrInputData.RCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out bool resetPositionButtonIsPressedRight);
+        VrInputData.TheVrInputData.LCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out bool resetPositionButtonIsPressedLeft);
+        VrInputData.TheVrInputData.RCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out bool resetPositionButtonIsPressedRight);
         var resetPositionButtonIsPressed = resetPositionButtonIsPressedLeft || resetPositionButtonIsPressedRight;
 
         var resetPositionButtonDown = resetPositionButtonIsPressed && !resetPositionButtonWasPressed;
         resetPositionButtonWasPressed = resetPositionButtonIsPressed;
 
-        vrInputData.LCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out bool flyingButtonIsPressedLeft);
-        vrInputData.RCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out bool flyingButtonIsPressedRight);
+        VrInputData.TheVrInputData.LCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out bool flyingButtonIsPressedLeft);
+        VrInputData.TheVrInputData.RCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out bool flyingButtonIsPressedRight);
         var flyingButtonIsPressed = flyingButtonIsPressedLeft || flyingButtonIsPressedRight;
 
         var flyingButtonDown = flyingButtonIsPressed && !flyingButtonWasPressed;
@@ -52,12 +51,8 @@ public class DragWorldJoystick : MonoBehaviour
             isFlying = !isFlying;
         }
 
-        // var axis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick)
-        //          + OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
-        Vector2 axisLeft;
-        vrInputData.LCtrl.TryGetFeatureValue(CommonUsages.primary2DAxis, out axisLeft);
-        Vector2 axisRight;
-        vrInputData.RCtrl.TryGetFeatureValue(CommonUsages.primary2DAxis, out axisRight);
+        VrInputData.TheVrInputData.LCtrl.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 axisLeft);
+        VrInputData.TheVrInputData.RCtrl.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 axisRight);
         var axis = axisLeft + axisRight;
 
         var right = rightAxis.right * axis.x;
