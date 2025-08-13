@@ -46,8 +46,10 @@ namespace Muco {
         
         public void Set(bool isOn) {
             this.isOn = isOn;
-            foreach (var callback in callbacks)
-                callback(isOn);
+            if (callbacks != null) {
+                foreach (var callback in callbacks)
+                    callback(isOn);
+            }
         }
 
         void Update() {
