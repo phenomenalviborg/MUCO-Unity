@@ -28,24 +28,15 @@ public class DragWorldJoystick : MonoBehaviour
         }
         VrDebug.SetValue("Devices", "Devices", debugString);
 
-        // var resetPositionButtonIsPressed = OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)
-        //                                 || OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger);
-        bool resetPositionButtonIsPressedLeft;
-        vrInputData.lCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out resetPositionButtonIsPressedLeft);
-        bool resetPositionButtonIsPressedRight;
-        vrInputData.rCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out resetPositionButtonIsPressedRight);
+        vrInputData.LCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out bool resetPositionButtonIsPressedLeft);
+        vrInputData.RCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out bool resetPositionButtonIsPressedRight);
         var resetPositionButtonIsPressed = resetPositionButtonIsPressedLeft || resetPositionButtonIsPressedRight;
 
         var resetPositionButtonDown = resetPositionButtonIsPressed && !resetPositionButtonWasPressed;
         resetPositionButtonWasPressed = resetPositionButtonIsPressed;
 
-
-        // var flyingButtonIsPressed = OVRInput.Get(OVRInput.Button.PrimaryThumbstick)
-        //                          || OVRInput.Get(OVRInput.Button.SecondaryThumbstick);
-        bool flyingButtonIsPressedLeft;
-        vrInputData.lCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out flyingButtonIsPressedLeft);
-        bool flyingButtonIsPressedRight;
-        vrInputData.rCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out flyingButtonIsPressedRight);
+        vrInputData.LCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out bool flyingButtonIsPressedLeft);
+        vrInputData.RCtrl.TryGetFeatureValue(CommonUsages.triggerButton, out bool flyingButtonIsPressedRight);
         var flyingButtonIsPressed = flyingButtonIsPressedLeft || flyingButtonIsPressedRight;
 
         var flyingButtonDown = flyingButtonIsPressed && !flyingButtonWasPressed;
@@ -64,9 +55,9 @@ public class DragWorldJoystick : MonoBehaviour
         // var axis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick)
         //          + OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
         Vector2 axisLeft;
-        vrInputData.lCtrl.TryGetFeatureValue(CommonUsages.primary2DAxis, out axisLeft);
+        vrInputData.LCtrl.TryGetFeatureValue(CommonUsages.primary2DAxis, out axisLeft);
         Vector2 axisRight;
-        vrInputData.rCtrl.TryGetFeatureValue(CommonUsages.primary2DAxis, out axisRight);
+        vrInputData.RCtrl.TryGetFeatureValue(CommonUsages.primary2DAxis, out axisRight);
         var axis = axisLeft + axisRight;
 
         var right = rightAxis.right * axis.x;

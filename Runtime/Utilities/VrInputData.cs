@@ -59,13 +59,13 @@ namespace Muco {
             return devices[(int)deviceType];
         }
 
-        public InputDevice head => GetDevice(DeviceType.Head);
-        public InputDevice lCtrl => GetDevice(DeviceType.LCtrl);
-        public InputDevice rCtrl => GetDevice(DeviceType.RCtrl);
+        public InputDevice Head => GetDevice(DeviceType.Head);
+        public InputDevice LCtrl => GetDevice(DeviceType.LCtrl);
+        public InputDevice RCtrl => GetDevice(DeviceType.RCtrl);
 
         InputDevice? GetDeviceWithCharacteristics(InputDeviceCharacteristics characteristics)
         {
-            List<InputDevice> headDevices = new List<InputDevice>();
+            List<InputDevice> headDevices = new();
             InputDevices.GetDevicesWithCharacteristics(characteristics, headDevices);
             if (headDevices.Count == 0)
                 return null;
