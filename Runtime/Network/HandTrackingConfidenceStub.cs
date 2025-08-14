@@ -1,6 +1,6 @@
 using Muco;
 
-namespace Modo {
+namespace Muco {
     public class HandTrackingConfidenceStub : HandTrackingConfidenceProvider {
         public bool confidence;
 
