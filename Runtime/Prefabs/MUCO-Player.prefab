@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7254516769174965751}
   - component: {fileID: 1749348593019958682}
   m_Layer: 0
-  m_Name: MUCO-Player-OpenXr
+  m_Name: MUCO-Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

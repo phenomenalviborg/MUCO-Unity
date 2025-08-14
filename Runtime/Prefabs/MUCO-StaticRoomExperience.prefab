@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5754781466706566475}
   - component: {fileID: 523949560654493309}
   m_Layer: 0
-  m_Name: MUCO-StaticRoomExperience-OpenXr
+  m_Name: MUCO-StaticRoomExperience
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
