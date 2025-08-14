@@ -1,10 +1,9 @@
 {
   "name": "com.phenominalviborg.muco",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "displayName": "MUCO",
   "description": "MUCO Core Package",
   "unity": "6000.0",
-  "unityRelease": "55f1",
   "dependencies": {
     "com.unity.adaptiveperformance": "5.1.5",
     "com.unity.adaptiveperformance.samsung.android": "5.1.0",
@@ -16,7 +15,7 @@
     "VR"
   ],
   "author": {
-    "name": "Phenominal Vibor",
+    "name": "Phenominal Viborg",
     "email": "info@phenominalvibor.com",
     "url": "https://www.phenomenalviborg.com/"
   },
