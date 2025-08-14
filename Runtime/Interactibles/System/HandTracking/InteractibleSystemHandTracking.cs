@@ -15,8 +15,6 @@ namespace Muco {
         public float maxSlideDistane = 0.1f;
         public float pressRadius = 0.005f;
 
-        public bool forceRelease = false;
-
         void Awake() {
             var fingerCount = FingerCount();
             fingers = new FingerProvider.Finger[fingerCount];
@@ -245,9 +243,9 @@ namespace Muco {
         public void MovableUpdate(ref FingerProvider.Finger finger) {
             var movable = finger.activeInteractible.GetComponent<InteractibleComponentPickUp>();
             var releasing = !finger.isPinching;
-            if (forceRelease) {
+            if (movable.forceRelease) {
                 releasing = true;
-                forceRelease = false;
+                movable.forceRelease = false;
             }
             if (movable) {
                 var pos = finger.hand.TransformPoint(finger.pickUpLocalPosition);;

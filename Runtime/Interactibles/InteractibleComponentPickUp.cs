@@ -17,6 +17,7 @@ namespace Muco {
         public Vector3 limitPositionMax;
         public bool removeRigidbodyOnSleep = true;
         public bool removeRigidbodyWhenHeld = true;
+        public bool forceRelease;
         public void Unsnap() {
             if (!snapPoint)
                 return;
@@ -199,7 +200,4 @@ namespace Muco {
             interactible.SendState(takeOwnership);
         }
     }
-    }
-
-
-
+}

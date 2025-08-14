@@ -21,7 +21,6 @@ namespace Muco {
         public Vector3 localPickUpPosition;
         public Quaternion localPickUpRotation;
         public float pickUpDistance;
-        public bool forceRelease;
 
         void Update() {
             var interactorId = new InteractorId(Networking.TheNetworking.serverConnection.clientId, system_id, 0);
@@ -127,10 +126,6 @@ namespace Muco {
             }
 
             var releasing = Mouse.current?.leftButton.wasReleasedThisFrame ?? false;
-            if (forceRelease) {
-                releasing = true;
-                forceRelease = false;
-            }
             
             var button = currentInteractible.GetComponent<InteractibleComponentButton>();
             if (button) {
@@ -145,6 +140,12 @@ namespace Muco {
 
             var movable = currentInteractible.GetComponent<InteractibleComponentPickUp>();
             if (movable) {
+
+                if (movable.forceRelease) {
+                    releasing = true;
+                    movable.forceRelease = false;
+                }
+
                 var cam = Player.ThePlayer.cam;
                 var ray = cam.ScreenPointToRay(Mouse.current?.position.value ?? Vector2.zero);
                 var p = ray.GetPoint(pickUpDistance);
