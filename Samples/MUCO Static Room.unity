@@ -535,12 +535,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5754781466706566473, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 683606106}
-    - targetCorrespondingSourceObject: {fileID: 5754781466706566473, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 683606110}
     - targetCorrespondingSourceObject: {fileID: 6133374967804466640, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 207954220}
@@ -816,56 +810,12 @@ Transform:
   - {fileID: 1089175567}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &683606102 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5754781466706566473, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
+--- !u!114 &683606110 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3908616071924168364, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
   m_PrefabInstance: {fileID: 373595381}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &683606106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 683606102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c76029cb758d144d87feea62d05b949, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hands:
-  - {fileID: 1262118739}
-  - {fileID: 1719832084}
-  actions:
-  - condition:
-      criteria:
-      - hand: 0
-        handPoseType: 5
-      - hand: 1
-        handPoseType: 7
-      duration: 1
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 400554365}
-          m_TargetAssemblyTypeName: DeveloperMode, Assembly-CSharp
-          m_MethodName: Toggle
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &683606110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 683606102}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6b4b4f0bc1c1d9438b453b533e04972, type: 3}
@@ -1053,17 +1003,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1262118739 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3905764272247469074, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
-  m_PrefabInstance: {fileID: 373595381}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ae5880d3f16a413c9a8ebbfc5fd864b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1328392583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,17 +1219,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415203731}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1719832084 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6730812956963234638, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
-  m_PrefabInstance: {fileID: 373595381}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ae5880d3f16a413c9a8ebbfc5fd864b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

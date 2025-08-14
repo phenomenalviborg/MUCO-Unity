@@ -66,9 +66,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragWorld: {fileID: 3718215509940137894}
-  fwdAxis: {fileID: 0}
-  rightAxis: {fileID: 0}
-  vrInputData: {fileID: 0}
+  fwdAxis: {fileID: 7929900137448730513}
+  rightAxis: {fileID: 7929900137448730513}
   rightZeroOnY: 1
   isFlying: 0
   moveSpeed: 3
@@ -132,5 +131,10 @@ PrefabInstance:
 --- !u!4 &2663366855821797013 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 207662263063964738, guid: 21bb0484ffa288e249cfc2e0240b0841, type: 3}
+  m_PrefabInstance: {fileID: 2744923842586659543}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7929900137448730513 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5195825313532290374, guid: 21bb0484ffa288e249cfc2e0240b0841, type: 3}
   m_PrefabInstance: {fileID: 2744923842586659543}
   m_PrefabAsset: {fileID: 0}

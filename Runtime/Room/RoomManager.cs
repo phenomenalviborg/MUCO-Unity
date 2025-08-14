@@ -20,7 +20,7 @@ namespace Muco {
         [HideInInspector] public Room[] rooms;
 
         public Room[] staticRooms;
-        public bool isInitialized;
+        [HideInInspector] public bool isInitialized;
 
         public virtual void Init() {
             if (isInitialized)
