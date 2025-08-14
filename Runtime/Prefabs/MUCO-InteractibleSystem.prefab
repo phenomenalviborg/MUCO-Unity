@@ -61,7 +61,6 @@ MonoBehaviour:
   maxPickUpDistance: 0.1
   maxSlideDistane: 0.1
   pressRadius: 0.005
-  forceRelease: 0
 --- !u!114 &6649188336409893480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,7 +80,6 @@ MonoBehaviour:
   localPickUpPosition: {x: 0, y: 0, z: 0}
   localPickUpRotation: {x: 0, y: 0, z: 0, w: 0}
   pickUpDistance: 0
-  forceRelease: 0
 --- !u!114 &6649188336409893481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +93,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOn: 0
-  vrInputData: {fileID: 0}
 --- !u!114 &6649188336409893478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,10 +116,8 @@ MonoBehaviour:
   ghostSystem:
     playerIndicatorPrefab: {fileID: 555922857835541676, guid: 7c785418ec220bf468698698f3157ea2, type: 3}
     ghostHandPrefabs:
-    - left: {fileID: 2088544922795184156, guid: c7fd44527eba065408c684f22260e73b, type: 3}
-      right: {fileID: 7515711365866165221, guid: 809eb73326de47f44a84c74f2d34a63b, type: 3}
-    - left: {fileID: 6441527062378086548, guid: 78724a730520c5c4185babe4899142a4, type: 3}
-      right: {fileID: 613208134371558806, guid: 001a2de1f1d82f943aa2ae7428fa100a, type: 3}
+    - left: {fileID: 7086097171020691550, guid: a50c047b863bafc31ae71f771e2b6d27, type: 3}
+      right: {fileID: 145341354888164170, guid: 26abb88110c370648963ddf662818f02, type: 3}
   playerMaterial: {fileID: 2100000, guid: 9beaf7c0f433ab5449e94e62ca702375, type: 2}
   genaricPlayerCollorFallbacks:
   - {r: 0.45490196, g: 0.7882353, b: 0.7490196, a: 0}

@@ -71,6 +71,10 @@ namespace Muco {
                 handsParentR = new GameObject().transform;
 
             if (handL == null) {
+                if (handPrefabs.left == null) {
+                    Debug.Log("Left Hand Prefab Unassigned");
+                    return false;
+                }
                 var go = GameObject.Instantiate(handPrefabs.left, handsParentL);
                 handL = go.GetComponent<NetworkTransformList>();
                 playerIndicator.leftHandRendererReference = go.GetComponent<RendererReference>();
