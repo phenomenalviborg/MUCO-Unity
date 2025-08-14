@@ -77,7 +77,7 @@ MonoBehaviour:
   player: {fileID: 7254516769174965751}
   vrInput: {fileID: 8601561431899626628}
   mainCamera: {fileID: 2633432204840031648}
-  trackedPose: {fileID: 0}
+  trackedPose: {fileID: 7016301723336697733}
   placementPreset: 1
   platformCriteria:
     developer: 1
@@ -204,6 +204,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 406713e3eda8c0f4e8e1799fa9fdad34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7016301723336697733 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1792304985137592630, guid: 37be460c643370941875d9b1360da46c, type: 3}
+  m_PrefabInstance: {fileID: 8755387851915943603}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &8596763729354083986 stripped

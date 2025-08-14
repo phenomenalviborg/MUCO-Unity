@@ -357,29 +357,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &207954215 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6133374967804466640, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
-  m_PrefabInstance: {fileID: 373595381}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &207954220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207954215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Device: 0
-  m_PoseSource: 2
-  m_PoseProviderComponent: {fileID: 0}
-  m_TrackingType: 0
-  m_UpdateType: 0
-  m_UseRelativeTransform: 0
 --- !u!4 &207954223 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3047972953719715736, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
@@ -433,10 +410,6 @@ PrefabInstance:
       propertyPath: vrInputData
       value: 
       objectReference: {fileID: 683606110}
-    - target: {fileID: 2704329054226821920, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
-      propertyPath: trackedPose
-      value: 
-      objectReference: {fileID: 207954220}
     - target: {fileID: 2721392222435204763, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
       propertyPath: m_Name
       value: OpenXrHandLeft
@@ -530,14 +503,10 @@ PrefabInstance:
       value: OpenXrHandRight
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 1876765032402065635, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
-    - {fileID: 5754781466706566474, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6133374967804466640, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 207954220}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
 --- !u!114 &400554365 stripped
 MonoBehaviour:
