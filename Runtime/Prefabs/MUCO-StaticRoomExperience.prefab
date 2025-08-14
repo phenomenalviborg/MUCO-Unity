@@ -339,6 +339,10 @@ PrefabInstance:
       propertyPath: 'fingerProviders.Array.data[1]'
       value: 
       objectReference: {fileID: 2573299783784167157}
+    - target: {fileID: 6649188336409893478, guid: a93a8e2cb4b3a1b44bc32a9d6a54f916, type: 3}
+      propertyPath: ghostSystem.ghostHandPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
