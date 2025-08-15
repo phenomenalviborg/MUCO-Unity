@@ -12,11 +12,12 @@
   },
   "keywords": [
     "MUCO",
-    "VR"
+    "VR",
+    "COLOCATION"
   ],
   "author": {
     "name": "Phenomenal Viborg",
-    "email": "info@phenomenalvibor.com",
+    "email": "info@phenomenalviborg.com",
     "url": "https://www.phenomenalviborg.com/"
   },
   "license": "LGPL-3.0-or-later"
