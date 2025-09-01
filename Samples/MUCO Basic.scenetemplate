@@ -58,27 +58,27 @@ MonoBehaviour:
   m_Script: {fileID: 13966, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: MUCO Basic
   m_EditorClassIdentifier: 
-  templateScene: {fileID: 102900000, guid: 6a221ab615aa3483a8d8ea58665c140d, type: 3}
+  templateScene: {fileID: 102900000, guid: cdd71153a11bf4abd9ac57d87d445a47, type: 3}
   templateName: MUCO Basic
   description: Basic MUCO Scene with a button.
   preview: {fileID: -565819477099833905}
   dependencies:
   - dependency: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
     instantiationMode: 1
-  - dependency: {fileID: 1071716324371825207, guid: 37be460c643370941875d9b1360da46c, type: 3}
-    instantiationMode: 0
   - dependency: {fileID: 8300000, guid: f055d0dd82743459b88320cad68844ff, type: 3}
     instantiationMode: 1
+  - dependency: {fileID: 1071716324371825207, guid: 37be460c643370941875d9b1360da46c, type: 3}
+    instantiationMode: 0
   - dependency: {fileID: 6649188336409893474, guid: a93a8e2cb4b3a1b44bc32a9d6a54f916, type: 3}
     instantiationMode: 0
   - dependency: {fileID: 7086097171020691550, guid: 166ed159e09d05c8091dc8e687ceb160, type: 3}
     instantiationMode: 0
   - dependency: {fileID: 2800000, guid: 2fd6421f253b4ef1a19526541f9ffc0c, type: 3}
     instantiationMode: 1
-  - dependency: {fileID: 2100000, guid: b9904cc7af5c48043b2642127d1ee52d, type: 2}
-    instantiationMode: 0
   - dependency: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
     instantiationMode: 1
+  - dependency: {fileID: 2100000, guid: b9904cc7af5c48043b2642127d1ee52d, type: 2}
+    instantiationMode: 0
   - dependency: {fileID: 4922937032375740481, guid: 5cc7328fc1dc343859972eb821d77a1f, type: 3}
     instantiationMode: 0
   - dependency: {fileID: 5754781466706566473, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
