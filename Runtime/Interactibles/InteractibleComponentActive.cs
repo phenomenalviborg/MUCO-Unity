@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace Muco {
-    public class NetworkComponentActive : InteractibleComponentBase
+    public class InteractibleComponentActive : InteractibleComponentBase
     {
         public bool active
         {
