@@ -10,7 +10,6 @@ namespace Muco {
         public override void Ser(List<byte> buffer)
         {
             Serialize.SerBool(hidden, buffer);
-            Debug.Log("Deprecated. Use InteractibleComponentActive instead.");
         }
 
         public override void Des(ref int cursor, byte[] buffer) {
