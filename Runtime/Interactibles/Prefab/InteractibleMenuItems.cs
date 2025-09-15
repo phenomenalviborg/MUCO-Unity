@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEditor;
-using Muco;
 
-public class InteractibleMenuItems : MonoBehaviour
+public class InteractibleMenuItems
 {
     private const string PrefabPath = "Packages/com.phenomenalviborg.muco/Runtime/Interactibles/Prefab/Button.prefab";
     [MenuItem("GameObject/MUCO/Button")]
