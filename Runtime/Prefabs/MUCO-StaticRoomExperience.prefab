@@ -73,7 +73,7 @@ MonoBehaviour:
       - hand: 0
         handPoseType: 5
       - hand: 1
-        handPoseType: 7
+        handPoseType: 3
       duration: 1
     unityEvent:
       m_PersistentCalls:
