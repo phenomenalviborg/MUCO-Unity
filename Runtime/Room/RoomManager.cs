@@ -19,7 +19,7 @@ namespace Muco {
         }
         [HideInInspector] public Room[] rooms;
 
-        public Room[] staticRooms;
+        [SerializeField] public Room[] staticRooms;
         [HideInInspector] public bool isInitialized;
 
         public virtual void Init() {
