@@ -40,8 +40,6 @@ namespace Muco {
             Open,
             Grabbing,
             Pointing,
-            GunLoaded,
-            GunFired,
             Peace,
             ThumbsUp,
             Rude,

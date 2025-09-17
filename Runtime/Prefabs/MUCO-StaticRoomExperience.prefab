@@ -71,7 +71,7 @@ MonoBehaviour:
   - condition:
       criteria:
       - hand: 0
-        handPoseType: 5
+        handPoseType: 6
       - hand: 1
         handPoseType: 3
       duration: 1
