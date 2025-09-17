@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rooms: []
   staticRooms: []
+  autoPopulateStaticRoomsOnAwake: 1
   isInitialized: 0
 --- !u!114 &2145954827538619427
 MonoBehaviour:

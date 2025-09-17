@@ -1,16 +1,20 @@
+using System.Linq;
 using UnityEngine;
 
 namespace Muco {
-    public class RoomManager : MonoBehaviour {
+    public class RoomManager : MonoBehaviour
+    {
         static RoomManager _roomManager;
-        public static RoomManager TheRoomManager {
-            get {
+        public static RoomManager TheRoomManager
+        {
+            get
+            {
                 if (_roomManager != null)
                     return _roomManager;
                 var roomManager = FindFirstObjectByType<RoomManager>();
                 if (roomManager == null)
                     Debug.Log("Could not find RoomManager");
-                if(!roomManager.isInitialized)
+                if (!roomManager.isInitialized)
                     roomManager.Init();
                 roomManager.Init();
                 _roomManager = roomManager;
@@ -20,9 +24,12 @@ namespace Muco {
         [HideInInspector] public Room[] rooms;
 
         [SerializeField] public Room[] staticRooms;
+        [SerializeField] private bool autoPopulateStaticRoomsOnAwake = true;
+
         [HideInInspector] public bool isInitialized;
 
-        public virtual void Init() {
+        public virtual void Init()
+        {
             if (isInitialized)
                 return;
             var roomCount = staticRooms.Length;
@@ -31,14 +38,47 @@ namespace Muco {
             isInitialized = true;
         }
 
-        public void InitializeStaticRooms() {
-            for (byte i = 0; i < staticRooms.Length; i++) {
+        public void InitializeStaticRooms()
+        {
+            for (byte i = 0; i < staticRooms.Length; i++)
+            {
                 var room = staticRooms[i];
                 rooms[i] = room;
                 room.roomId = i;
                 room.InitializePreMadeInteractibles();
                 room.InitRoom();
                 room.EnterRoom();
+            }
+        }
+
+        private void Awake() {
+            if (autoPopulateStaticRoomsOnAwake) {
+                AutoPopulateStaticRooms();
+            }
+        }
+        
+        public void AutoPopulateStaticRooms()
+        {
+            Room[] roomsInScene = FindObjectsByType<Room>(FindObjectsSortMode.None);
+
+            if (roomsInScene.Length == 0)
+            {
+                return;
+            }
+
+            var validRooms = roomsInScene.Where(room => room != null).ToArray();
+
+            if (staticRooms == null)
+            {
+                staticRooms = new Room[0];
+            }
+
+            var existingRooms = staticRooms ?? new Room[0];
+            var combinedRooms = existingRooms.Union(validRooms).Where(room => room != null).ToArray();
+
+            if (combinedRooms.Length != existingRooms.Length)
+            {
+                staticRooms = combinedRooms;
             }
         }
     }
