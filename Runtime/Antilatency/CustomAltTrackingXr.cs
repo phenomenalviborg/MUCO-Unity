@@ -50,6 +50,11 @@ namespace Muco
             return Pose.identity;
         }
 
+        void Update()
+        {
+            GetTrackingConfidence();
+        }
+
         public float GetTrackingConfidence() {
             float confidence = 0f;
             Antilatency.Alt.Tracking.State state;
