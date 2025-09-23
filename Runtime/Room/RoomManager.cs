@@ -51,7 +51,7 @@ namespace Muco {
             }
         }
 
-        private void Awake() {
+        private void Init() {
             if (autoPopulateStaticRoomsOnAwake) {
                 AutoPopulateStaticRooms();
             }
