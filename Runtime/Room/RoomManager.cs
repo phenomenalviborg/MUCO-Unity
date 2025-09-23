@@ -24,7 +24,7 @@ namespace Muco {
         [HideInInspector] public Room[] rooms;
 
         [SerializeField] public Room[] staticRooms;
-        [SerializeField] private bool autoPopulateStaticRoomsOnAwake = true;
+        [SerializeField] private bool autoPopulateStaticRoomsOnInit = true;
 
         [HideInInspector] public bool isInitialized;
 
@@ -34,6 +34,9 @@ namespace Muco {
                 return;
             var roomCount = staticRooms.Length;
             rooms = new Room[roomCount];
+            if (autoPopulateStaticRoomsOnInit) {
+                AutoPopulateStaticRooms();
+            }
             InitializeStaticRooms();
             isInitialized = true;
         }
@@ -48,12 +51,6 @@ namespace Muco {
                 room.InitializePreMadeInteractibles();
                 room.InitRoom();
                 room.EnterRoom();
-            }
-        }
-
-        private void Init() {
-            if (autoPopulateStaticRoomsOnAwake) {
-                AutoPopulateStaticRooms();
             }
         }
         
