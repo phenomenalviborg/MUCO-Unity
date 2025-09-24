@@ -12,6 +12,7 @@ namespace Muco {
 
         public PlatformCriteria platformCriteria;
         public bool debugTrackingConfidence;
+        public float MinimalAQualityToAlign = 0.075f;
 
         CustomAltTrackingXr altTracking;
 
@@ -52,7 +53,7 @@ namespace Muco {
             altTracking.XrCamera = mainCamera;
             altTracking.HmdPoseDriver = trackedPose;
             altTracking.placementPreset = placementPreset;
-            altTracking.MinimalAQualityToAlign = 0;
+            altTracking.MinimalAQualityToAlign = MinimalAQualityToAlign;
             altTracking.ExtrapolationTime = 0.03f;
 
             // Alt Environment Markers DRawer
