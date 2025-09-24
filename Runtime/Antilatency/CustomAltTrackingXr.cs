@@ -50,14 +50,16 @@ namespace Muco
             return Pose.identity;
         }
 
-        public float GetTrackingConfidence() {
-            float confidence = 0f;
+        public bool TryGetTrackingConfidence(out float confidence)
+        {
+            confidence = 0;
             Antilatency.Alt.Tracking.State state;
-            if (GetRawTrackingState(out state)) {
+            if (GetRawTrackingState(out state))
+            {
                 confidence = state.stability.value;
+                return true;
             }
-            VrDebug.SetValue("Stats", "TrackingConfidence", "" + confidence);
-            return confidence;
+            return false;
         }
     }
 }

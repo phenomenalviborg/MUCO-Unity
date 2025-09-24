@@ -309,7 +309,7 @@ namespace Muco {
                     float trackingConfidence = 0f;
                     var altTrackingXr = Player.ThePlayer.custonAltTrackingXr;
                     if (altTrackingXr)
-                        trackingConfidence = altTrackingXr.GetTrackingConfidence();
+                        altTrackingXr.TryGetTrackingConfidence(out trackingConfidence);
                     Serialize.SerFloat(trackingConfidence, buffer);
 
                     buffer.Add((byte)deviceTemperature.metrics.WarningLevel);

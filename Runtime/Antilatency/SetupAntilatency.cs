@@ -11,10 +11,24 @@ namespace Muco {
         public CustomAltTrackingXr.PlacementPreset placementPreset;
 
         public PlatformCriteria platformCriteria;
+        public bool debugTrackingConfidence;
+
+        CustomAltTrackingXr altTracking;
 
         void Start() {
             if(PlatformDetection.PlatformCriteriaSatisfied(platformCriteria))
                 Setup();
+        }
+
+        void Update()
+        {
+            if (debugTrackingConfidence && altTracking != null)
+            {
+                if (altTracking.TryGetTrackingConfidence(out float confidence))
+                    VrDebug.SetValue("Stats", "TrackingConfidence", "" + confidence);
+                else
+                    VrDebug.SetValue("Stats", "TrackingConfidence", "None");
+            }
         }
 
         void Setup() {
@@ -32,7 +46,7 @@ namespace Muco {
             // vrInput.AddComponent<CameraOffset>();
 
             // Custom Alt Traking Xr
-            var altTracking = vrInput.AddComponent<CustomAltTrackingXr>();
+            altTracking = vrInput.AddComponent<CustomAltTrackingXr>();
             altTracking.Network = network;
             altTracking.Environment = environment;
             altTracking.XrCamera = mainCamera;

@@ -86,6 +86,7 @@ MonoBehaviour:
     osxEditor: 0
     quest2: 1
     pico4: 1
+  debugTrackingConfidence: 1
 --- !u!1001 &8755387851915943603
 PrefabInstance:
   m_ObjectHideFlags: 0
