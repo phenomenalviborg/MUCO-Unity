@@ -520,6 +520,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 523949560654493309, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
+      propertyPath: staticRooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 523949560654493309, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
+      propertyPath: 'staticRooms.Array.data[0]'
+      value: 
+      objectReference: {fileID: 642656211}
+    - target: {fileID: 523949560654493309, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
+      propertyPath: autoPopulateStaticRoomsOnInit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747476154903912936, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
+      propertyPath: isOn
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5754781466706566473, guid: 94567edb572e69c48863ce41027ef6ac, type: 3}
       propertyPath: m_Name
       value: MUCO-StaticRoomExperience
