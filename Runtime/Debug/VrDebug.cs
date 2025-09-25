@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Muco
@@ -37,26 +38,26 @@ namespace Muco
             DeveloperMode.TheDeveloperMode.Register(DeveloperModeCallback);
         }
 
-        private void Update() {
-            // Debug.Log("Don't foget to fix Vr Debug");
-            // bool nextCategoryButtonIsPressed = OVRInput.Get(OVRInput.Button.Two)
-            //                                 || OVRInput.Get(OVRInput.Button.Four)
-            //                                 || Input.GetKey(KeyCode.Period);
-            // bool prevCategoryButtonIsPressed = OVRInput.Get(OVRInput.Button.One)
-            //                                 || OVRInput.Get(OVRInput.Button.Three)
-            //                                 || Input.GetKey(KeyCode.Comma);
+        private void Update()
+        {
+            VrInputData.TheVrInputData.LCtrl.TryGetFeatureValue(UnityEngine.XR.CommonUsages.primaryButton, out bool leftPrimaryButton);
+            VrInputData.TheVrInputData.RCtrl.TryGetFeatureValue(UnityEngine.XR.CommonUsages.primaryButton, out bool rightPrimaryButton);
+            VrInputData.TheVrInputData.LCtrl.TryGetFeatureValue(UnityEngine.XR.CommonUsages.secondaryButton, out bool leftSecondaryButton);
+            VrInputData.TheVrInputData.RCtrl.TryGetFeatureValue(UnityEngine.XR.CommonUsages.secondaryButton, out bool rightSecondaryButton);
+            bool nextCategoryButtonIsPressed = leftPrimaryButton || rightPrimaryButton || Keyboard.current.periodKey.wasPressedThisFrame;
+            bool prevCategoryButtonIsPressed = leftSecondaryButton || rightSecondaryButton || Keyboard.current.commaKey.wasPressedThisFrame;
 
-            // bool nextCategoryButtonDown = nextCategoryButtonIsPressed && !nextCategoryButtonWasPressed;
-            // bool prevCategoryButtonDown = prevCategoryButtonIsPressed && !prevCategoryButtonWasPressed;
+            bool nextCategoryButtonDown = nextCategoryButtonIsPressed && !nextCategoryButtonWasPressed;
+            bool prevCategoryButtonDown = prevCategoryButtonIsPressed && !prevCategoryButtonWasPressed;
 
-            // nextCategoryButtonWasPressed = nextCategoryButtonIsPressed;
-            // prevCategoryButtonWasPressed = prevCategoryButtonIsPressed;
+            nextCategoryButtonWasPressed = nextCategoryButtonIsPressed;
+            prevCategoryButtonWasPressed = prevCategoryButtonIsPressed;
 
-            // if (nextCategoryButtonDown)
-            //     CycleCategory(1);
+            if (nextCategoryButtonDown)
+                CycleCategory(1);
 
-            // if (prevCategoryButtonDown)
-            //     CycleCategory(-1);
+            if (prevCategoryButtonDown)
+                CycleCategory(-1);
         }
 
         public void CycleCategory(int i)
