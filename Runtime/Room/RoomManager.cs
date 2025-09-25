@@ -43,6 +43,7 @@ namespace Muco {
 
         public void InitializeStaticRooms()
         {
+            if (staticRooms.Length == 0 ) return;
             for (byte i = 0; i < staticRooms.Length; i++)
             {
                 var room = staticRooms[i];
