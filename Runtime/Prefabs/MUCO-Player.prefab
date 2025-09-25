@@ -78,7 +78,12 @@ MonoBehaviour:
   vrInput: {fileID: 8601561431899626628}
   mainCamera: {fileID: 2633432204840031648}
   trackedPose: {fileID: 7016301723336697733}
-  placementPreset: 1
+  defaultPlacementPreset: 1
+  platformPresetOverwrites:
+  - platform: 2
+    preset: 3
+  - platform: 3
+    preset: 4
   platformCriteria:
     developer: 1
     release: 1
@@ -87,6 +92,7 @@ MonoBehaviour:
     quest2: 1
     pico4: 1
   debugTrackingConfidence: 1
+  MinimalAQualityToAlign: 0.075
 --- !u!1001 &8755387851915943603
 PrefabInstance:
   m_ObjectHideFlags: 0

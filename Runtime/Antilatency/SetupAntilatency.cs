@@ -7,8 +7,17 @@ namespace Muco {
         public GameObject vrInput;
 
         public Camera mainCamera;
+
+        [System.Serializable]
+        public struct PlatformPresetOverwrite
+        {
+            public Platform platform;
+            public CustomAltTrackingXr.PlacementPreset preset;
+        }
+
         public UnityEngine.SpatialTracking.TrackedPoseDriver trackedPose;
-        public CustomAltTrackingXr.PlacementPreset placementPreset;
+        public CustomAltTrackingXr.PlacementPreset defaultPlacementPreset;
+        public PlatformPresetOverwrite[] platformPresetOverwrites;
 
         public PlatformCriteria platformCriteria;
         public bool debugTrackingConfidence;
@@ -52,7 +61,7 @@ namespace Muco {
             altTracking.Environment = environment;
             altTracking.XrCamera = mainCamera;
             altTracking.HmdPoseDriver = trackedPose;
-            altTracking.placementPreset = placementPreset;
+            altTracking.placementPreset = GetPlacementPreset();
             altTracking.MinimalAQualityToAlign = MinimalAQualityToAlign;
             altTracking.ExtrapolationTime = 0.03f;
 
@@ -68,7 +77,21 @@ namespace Muco {
             vrInput.SetActive(true);
         }
 
-        public void OnDeveloperMode(bool isOn) {
+        public CustomAltTrackingXr.PlacementPreset GetPlacementPreset()
+        {
+            CustomAltTrackingXr.PlacementPreset placementPreset = defaultPlacementPreset;
+            var platform = PlatformDetection.ThePlatform;
+            foreach (var platformPresetOverwrite in platformPresetOverwrites)
+            {
+                if (platformPresetOverwrite.platform == platform)
+                    placementPreset = platformPresetOverwrite.preset;
+            }
+            VrDebug.SetValue("Platform", "PlacementPreset", "" + placementPreset);
+            return placementPreset;
+        }
+
+        public void OnDeveloperMode(bool isOn)
+        {
             var markerDrawer = GetComponent<AltEnvironmentMarkersDrawer>();
             if (markerDrawer)
                 markerDrawer.enabled = isOn;
