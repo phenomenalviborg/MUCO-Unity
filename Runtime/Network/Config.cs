@@ -26,7 +26,6 @@ namespace Muco {
             var path = GetPath();
             string configText = JsonUtility.ToJson(this, true);
             File.WriteAllText(path, configText);
-            Debug.Log("Wrote Networking Config to: " + path);
             VrDebug.SetValue("Config", "config source", "game");
         }
 
@@ -41,7 +40,6 @@ namespace Muco {
             else {
                 string configText = File.ReadAllText(path);
                 this = JsonUtility.FromJson<Config>(configText);
-                Debug.Log("Read Networking Config from: " + path);
                 VrDebug.SetValue("Config", "config source", "file");
             }
 
