@@ -1,7 +1,10 @@
 namespace Muco {
-    public enum Language {
+    public enum Language
+    {
         English,
         Dansk,
         Deutsch,
+        Nederlands,
+        Français
     }
 }
