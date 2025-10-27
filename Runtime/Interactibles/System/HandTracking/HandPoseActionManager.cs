@@ -19,6 +19,7 @@ namespace Muco {
     public struct HandPoseCondition {
         public List<HandPoseCriterion> criteria;
         public float duration = 2;
+        public HandPoseCondition() {}
     }
 
 
