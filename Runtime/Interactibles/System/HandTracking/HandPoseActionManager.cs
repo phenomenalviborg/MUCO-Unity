@@ -18,7 +18,7 @@ namespace Muco {
     [System.Serializable]
     public struct HandPoseCondition {
         public List<HandPoseCriterion> criteria;
-        public float duration;
+        public float duration = 2;
     }
 
 
