@@ -35,6 +35,10 @@ namespace Muco {
 
         void Awake() {
             timers = new float[actions.Count];
+            for (int i = 0; i < actions.Count;i++)
+            {
+                if (actions[i].duration == 0) Debug.LogWarning("Hand Pose Action "+i+"has 0 second duration and will be ignored");
+            }
             for (int i = 0; i < timers.Length; i++) {
                 timers[i] = 0;
             }
@@ -59,6 +63,7 @@ namespace Muco {
 
             for (int actionIndex = 0; actionIndex < actions.Count; actionIndex++) {
                 var action = actions[actionIndex];
+                if (action.duration == 0) continue;
                 bool hasFired = timers[actionIndex] >= action.condition.duration;
                 if (!IsMet(action.condition))
                     timers[actionIndex] = 0;
