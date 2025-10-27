@@ -42,19 +42,34 @@ namespace Muco {
         public float maxSlideDistane = 0.1f;
         public float pressRadius = 0.005f;
 
-        void Awake() {
+        void Awake()
+        {
             var fingerCount = FingerCount();
             fingers = new FingerProvider.Finger[fingerCount];
-            
-            for (int i = 0; i < fingerCount; i++) {
+
+            for (int i = 0; i < fingerCount; i++)
+            {
                 fingers[i].Init();
             }
 
-            if (debugFingers) {
+            if (debugFingers)
+            {
                 fingerVisualizers = new FingerVis[fingerCount];
-                for (int i = 0; i < fingerCount; i++) {
+                for (int i = 0; i < fingerCount; i++)
+                {
                     fingerVisualizers[i] = Instantiate(fingerVisPrefab);
                 }
+            }
+            if (!isInitialized)
+            {
+                Init();
+            }
+        }
+        protected virtual void Init()
+        {
+            if (!isInitialized)
+            {
+                isInitialized = true;
             }
         }
 
