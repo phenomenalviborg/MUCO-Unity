@@ -4,6 +4,31 @@ using UnityEngine;
 
 namespace Muco {
     public class InteractibleSystemHandTracking : MonoBehaviour {
+        private static InteractibleSystemHandTracking _interactibleSystemHandTracking;
+        public static InteractibleSystemHandTracking TheInteractibleSystemHandTracking
+        {
+            get
+            {
+                if (_interactibleSystemHandTracking != null)
+                {
+                    return _interactibleSystemHandTracking;
+                }
+
+                InteractibleSystemHandTracking interactibleSystemHandTracking = UnityEngine.Object.FindFirstObjectByType<InteractibleSystemHandTracking>();
+                if (interactibleSystemHandTracking == null)
+                {
+                    Debug.Log("No interacrible system hand tracking found");
+                }
+
+                if (!interactibleSystemHandTracking.isInitialized)
+                {
+                    interactibleSystemHandTracking.Init();
+                }
+
+                _interactibleSystemHandTracking = interactibleSystemHandTracking;
+                return interactibleSystemHandTracking;
+            }
+        }
         public bool debugFingers;
         byte system_id = 1;
         public FingerProvider[] fingerProviders;
