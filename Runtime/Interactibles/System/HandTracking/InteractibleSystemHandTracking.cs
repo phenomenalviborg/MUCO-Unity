@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Muco {
     public class InteractibleSystemHandTracking : MonoBehaviour {
+        [HideInInspector]
+        private bool isInitialized;
         private static InteractibleSystemHandTracking _interactibleSystemHandTracking;
         public static InteractibleSystemHandTracking TheInteractibleSystemHandTracking
         {
