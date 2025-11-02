@@ -43,7 +43,7 @@ namespace Muco {
                 finger.wasPinching = finger.isPinching;
                 finger.isPinching = isPinching;
                 finger.confidence = true;
-                finger.hand = smoothHandReference;
+                finger.hand = curlTargetFinger;
                 finger.isCurled = isCurled;
                 fingers[i] = finger;
             }

@@ -183,7 +183,6 @@ namespace Muco {
                 if (FindInteractibleOfType<InteractibleComponentPickUp>(finger.currentPosition, out interactible)) {
                     var movable = interactible.GetComponent<InteractibleComponentPickUp>();
                     if (movable) {
-                        Debug.Log(finger.hand.name+" is at "+finger.hand.position);
                         finger.pickUpLocalPosition = finger.hand.InverseTransformPoint(movable.transform.position);
                         finger.pickUpLocalRotation = Quaternion.Inverse(finger.hand.rotation) * movable.transform.rotation;
                         interactible.TryTakeOwnership(interactor_id);
