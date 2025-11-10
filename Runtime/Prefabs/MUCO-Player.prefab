@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6401710869216084233}
   - component: {fileID: 7254516769174965751}
   - component: {fileID: 1749348593019958682}
+  - component: {fileID: 7770068169737687073}
   m_Layer: 0
   m_Name: MUCO-Player
   m_TagString: Untagged
@@ -93,6 +94,44 @@ MonoBehaviour:
     pico4: 1
   debugTrackingConfidence: 1
   MinimalAQualityToAlign: 0.075
+--- !u!114 &7770068169737687073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6396315997773419295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c76029cb758d144d87feea62d05b949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hands:
+  - {fileID: 861687665542918824}
+  - {fileID: 6965376533915395572}
+  actions:
+  - condition:
+      criteria:
+      - hand: 0
+        handPoseType: 6
+      - hand: 1
+        handPoseType: 3
+      duration: 1
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: DeveloperMode, Assembly-CSharp
+          m_MethodName: Toggle
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &8755387851915943603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,6 +194,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8826180008914474556, guid: 37be460c643370941875d9b1360da46c, type: 3}
   m_PrefabInstance: {fileID: 8755387851915943603}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &861687665542918824 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8247276744432495643, guid: 37be460c643370941875d9b1360da46c, type: 3}
+  m_PrefabInstance: {fileID: 8755387851915943603}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae5880d3f16a413c9a8ebbfc5fd864b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1697233585369231650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7929900137448730513, guid: 37be460c643370941875d9b1360da46c, type: 3}
@@ -211,6 +261,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 406713e3eda8c0f4e8e1799fa9fdad34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6965376533915395572 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1812874568652962631, guid: 37be460c643370941875d9b1360da46c, type: 3}
+  m_PrefabInstance: {fileID: 8755387851915943603}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae5880d3f16a413c9a8ebbfc5fd864b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7016301723336697733 stripped

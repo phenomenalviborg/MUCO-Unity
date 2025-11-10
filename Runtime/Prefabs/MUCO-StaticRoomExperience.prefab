@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5754781466706566475}
   - component: {fileID: 523949560654493309}
-  - component: {fileID: 2145954827538619427}
   - component: {fileID: 3908616071924168364}
   m_Layer: 0
   m_Name: MUCO-StaticRoomExperience
@@ -51,46 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rooms: []
   staticRooms: []
-  autoPopulateStaticRoomsOnAwake: 1
+  autoPopulateStaticRoomsOnInit: 1
   isInitialized: 0
---- !u!114 &2145954827538619427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5754781466706566473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c76029cb758d144d87feea62d05b949, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hands:
-  - {fileID: 3905764272247469074}
-  - {fileID: 6730812956963234638}
-  actions:
-  - condition:
-      criteria:
-      - hand: 0
-        handPoseType: 6
-      - hand: 1
-        handPoseType: 3
-      duration: 1
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1747476154903912936}
-          m_TargetAssemblyTypeName: DeveloperMode, Assembly-CSharp
-          m_MethodName: Toggle
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &3908616071924168364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +187,10 @@ PrefabInstance:
       propertyPath: guardian
       value: 
       objectReference: {fileID: 2879988099407159810}
+    - target: {fileID: 7770068169737687073, guid: ae25aaac79ec00c4da506d629039ef08, type: 3}
+      propertyPath: actions.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1747476154903912936}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -251,28 +216,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfda41613236b9844a465b25f8ed0e76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3905764272247469074 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 861687665542918824, guid: ae25aaac79ec00c4da506d629039ef08, type: 3}
-  m_PrefabInstance: {fileID: 4449938738620761786}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ae5880d3f16a413c9a8ebbfc5fd864b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6730812956963234638 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6965376533915395572, guid: ae25aaac79ec00c4da506d629039ef08, type: 3}
-  m_PrefabInstance: {fileID: 4449938738620761786}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ae5880d3f16a413c9a8ebbfc5fd864b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &7284055259886667699 stripped
