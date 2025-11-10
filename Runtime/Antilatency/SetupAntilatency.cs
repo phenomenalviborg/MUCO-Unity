@@ -26,8 +26,14 @@ namespace Muco {
         CustomAltTrackingXr altTracking;
 
         void Start() {
-            if(PlatformDetection.PlatformCriteriaSatisfied(platformCriteria))
+            if (PlatformDetection.PlatformCriteriaSatisfied(platformCriteria))
+            {
                 Setup();
+            }
+            else
+            {
+                Debug.Log("Platform Criteria not satisfied, skipping Antilatency setup. Likely due to missing DLL on MacOS.");
+            }
         }
 
         void Update()
