@@ -8,7 +8,6 @@ namespace Muco {
         Transform target;
         public bool smoothRotation;
 
-        //public float lockY = 1.7f;
         void Start()
         {
             if (transform.parent != null)
@@ -24,12 +23,8 @@ namespace Muco {
                 Destroy(gameObject);
                 return;
             }
-            //transform.position.Set(transform.position.x,lockY,transform.position.z);
-            //velocity.y = 0;
-            transform.rotation = smoothRotation ? Quaternion.Lerp(transform.rotation, target.rotation, lerpWeightRotation) :  target.rotation;
-            //transform.position = Vector3.Lerp(transform.position, target.position, lerpWeightPosition);
+            transform.rotation = smoothRotation ? Quaternion.Slerp(transform.rotation, target.rotation, lerpWeightRotation) :  target.rotation;
             transform.position = Vector3.SmoothDamp(transform.position,target.position,ref velocity,1/lerpWeightPosition);
-            //transform.localPosition.Set(transform.localPosition.x,lockY, transform.localPosition.z);
         }
     }
 }
