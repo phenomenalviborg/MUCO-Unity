@@ -21,6 +21,9 @@ namespace Muco {
         public Vector3 localPickUpPosition;
         public Quaternion localPickUpRotation;
         public float pickUpDistance;
+        public float defaultMoveSpeed = 0.02f;
+        [Tooltip("Hold shift for sprint")]
+        public float sprintMoveSpeed = 0.05f;
 
         void Update() {
             var interactorId = new InteractorId(Networking.TheNetworking.serverConnection.clientId, system_id, 0);
@@ -72,9 +75,9 @@ namespace Muco {
                 }
             }
 
-            float moveSpeed = 0.02f;
+            float moveSpeed =defaultMoveSpeed;
             if (Keyboard.current.leftShiftKey.isPressed)
-                moveSpeed = 0.05f;
+                moveSpeed = sprintMoveSpeed;
 
             if (Keyboard.current.wKey.isPressed)
                 DragWorld.TheDragWorld.MoveFPS(Vector3.forward * moveSpeed);
