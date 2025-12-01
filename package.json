@@ -5,10 +5,11 @@
   "description": "MUCO Core Package",
   "unity": "6000.0",
   "dependencies": {
-    "com.unity.adaptiveperformance": "5.1.6",
-    "com.unity.adaptiveperformance.google.android": "5.1.6",
+    "com.unity.xr.management": "4.5.1",
+    "com.unity.xr.hands": "1.5.1",
     "com.unity.xr.openxr": "1.15.1",
-    "com.unity.xr.hands": "1.5.1"
+    "com.unity.adaptiveperformance": "5.1.6",
+    "com.unity.adaptiveperformance.google.android": "5.1.6"
   },
   "keywords": [
     "MUCO",
