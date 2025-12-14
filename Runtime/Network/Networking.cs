@@ -20,7 +20,8 @@ namespace Muco {
         }
 
         public ResolveIp resolveIp;
-
+        
+        private ResolveIp resolveIpPrev;
         public ServerConnection serverConnection;
 
         public GhostSystem ghostSystem;
@@ -112,6 +113,22 @@ namespace Muco {
             ghostSystem.RemoveAllGhosts();
         }
 
+        void CheckResolveIpChange()
+        {
+            if (resolveIp != resolveIpPrev)
+            {
+                ForgetServer();
+                Debug.Log("forgot server");
+                resolveIpPrev = resolveIp;
+            }
+        }
+
+        #if UNITY_EDITOR
+        void OnValidate()
+        {
+            CheckResolveIpChange();
+        }
+        #endif
 
         void Awake() {
             if (ghostSystem.playerIndicatorPrefab == null)
@@ -138,6 +155,8 @@ namespace Muco {
             };
 
             diff = new List<byte>();
+
+            resolveIpPrev = resolveIp;
         }
 
         void Update() {
