@@ -160,6 +160,7 @@ namespace Muco {
         }
 
         void Update() {
+            CheckResolveIpChange();
             VrDebug.SetValue("Networking", "is connected", "" + serverConnection.connectedToServer);
             VrDebug.SetValue("Networking", "is initialized", "" + serverConnection.networkInitialized);
             VrDebug.SetValue("Networking", "client id", "" + serverConnection.clientId);
