@@ -130,6 +130,25 @@ namespace Muco {
         }
         #endif
 
+        void UpdateGuardianDimensions(GuardianConfig guardianConfig) {
+            var guardian = Player.ThePlayer.guardian;
+            if (guardian == null) return;
+
+            switch (guardianConfig.type) {
+                case GuardianType.Rectangle:
+                    guardian.transform.localScale = new Vector3(
+                        guardianConfig.width,
+                        guardianConfig.height,
+                        4.0f // Keep depth constant
+                    );
+                    break;
+            }
+
+            VrDebug.SetValue("Guardian", "type", guardianConfig.type.ToString());
+            VrDebug.SetValue("Guardian", "width", guardianConfig.width.ToString());
+            VrDebug.SetValue("Guardian", "height", guardianConfig.height.ToString());
+        }
+
         void Awake() {
             if (ghostSystem.playerIndicatorPrefab == null)
             {
@@ -146,6 +165,9 @@ namespace Muco {
             if (!isInitialized) {
                 Init();
             }
+
+            // NEW: Initialize guardian dimensions from config
+            UpdateGuardianDimensions(config.environmentData.guardian);
 
             reconnectTimer = 0;
 
@@ -320,6 +342,7 @@ namespace Muco {
                     Serialize.SerString(envData.code, buffer);
                     Serialize.SerVector3(playerTrans.position, buffer);
                     Serialize.SerVector3(playerTrans.rotation.eulerAngles, buffer);
+                    Serialize.SerGuardianConfig(envData.guardian, buffer);
                     break;
                 case PlayerDataType.DeviceStats:
                     buffer.Add((byte)SystemInfo.batteryStatus);
@@ -581,10 +604,18 @@ namespace Muco {
                         Debug.Log("Problem Setting env Euler");
                         return;
                     }
+                    // NEW: Deserialize guardian config with fallback
+                    if (!Serialize.DesGuardianConfig(out envData.guardian, ref cursor, buffer)) {
+                        Debug.Log("Problem deserializing guardian config, using defaults");
+                        envData.guardian = GuardianConfig.Default();
+                    }
+
                     var isSame = config.environmentData.name == envData.name
                               && config.environmentData.code == envData.code
                               && config.environmentData.pos == envData.pos
-                              && config.environmentData.euler == envData.euler;
+                              && config.environmentData.euler == envData.euler
+                              && config.environmentData.guardian.width == envData.guardian.width
+                              && config.environmentData.guardian.height == envData.guardian.height;
                     if (!isSame) {
                         config.environmentData = envData;
                         Debug.Log("Saving new environment data");
@@ -595,6 +626,8 @@ namespace Muco {
                             envCodeConfig.transform.position = envData.pos;
                             envCodeConfig.transform.rotation = Quaternion.Euler(envData.euler);
                         }
+                        // NEW: Update guardian dimensions
+                        UpdateGuardianDimensions(envData.guardian);
                     }
                     break;
                 }
