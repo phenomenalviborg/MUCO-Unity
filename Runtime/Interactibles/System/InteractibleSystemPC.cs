@@ -102,7 +102,7 @@ namespace Muco {
 
         SnapPoint FindClosestSnappingPointScreenSpace(Vector3 screenPos, float maxDist, InteractibleComponentPickUp pickUp) {
             var cam = Player.ThePlayer.cam;
-            var snappingPoints = FindObjectsByType<SnapPoint>(0);
+            var snappingPoints = FindObjectsByType<SnapPoint>(FindObjectsSortMode.None);
             SnapPoint closestSnappingPoint = null;
             float closesedDist = maxDist;
             foreach(var snappingPoint in snappingPoints) {

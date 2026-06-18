@@ -266,7 +266,7 @@ namespace Muco {
         }
 
         SnapPoint FindClosestSnappingPoint(Vector3 pos, float maxDist, InteractibleComponentPickUp pickUp) {
-            var snappingPoints = FindObjectsByType<SnapPoint>(0);
+            var snappingPoints = FindObjectsByType<SnapPoint>(FindObjectsSortMode.None);
             SnapPoint closestSnappingPoint = null;
             float closestDist = maxDist;
             foreach(var snappingPoint in snappingPoints) {
