@@ -328,6 +328,43 @@ namespace Muco {
             return true;
         }
 
+        public static void SerGuardianConfig(GuardianConfig value, List<byte> buffer) {
+            SerU8((byte)value.type, buffer);
+            switch (value.type) {
+                case GuardianType.Rectangle:
+                    SerFloat(value.width, buffer);
+                    SerFloat(value.height, buffer);
+                    break;
+            }
+        }
+
+        public static bool DesGuardianConfig(out GuardianConfig outValue, ref int cursor, byte[] buffer) {
+            outValue = GuardianConfig.Default();
+            byte typeTag;
+            if (!DesU8(out typeTag, ref cursor, buffer))
+                return false;
+
+            if (typeTag == 0) { // Backward compatibility
+                outValue = GuardianConfig.Default();
+                return true;
+            }
+
+            outValue.type = (GuardianType)typeTag;
+            switch (outValue.type) {
+                case GuardianType.Rectangle:
+                    if (!DesFloat(out outValue.width, ref cursor, buffer))
+                        return false;
+                    if (!DesFloat(out outValue.height, ref cursor, buffer))
+                        return false;
+                    break;
+                default:
+                    Debug.LogWarning($"Unknown guardian type: {typeTag}, using defaults");
+                    outValue = GuardianConfig.Default();
+                    break;
+            }
+            return true;
+        }
+
         public static void SerInteractorId(InteractorId value, List<byte> buffer) {
             SerU16(value.user_id, buffer);
             SerU8(value.system_id, buffer);
