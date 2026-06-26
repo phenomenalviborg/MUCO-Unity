@@ -211,6 +211,14 @@ namespace Muco {
                     if (Serialize.DesVector3(out envEuler, ref cursor, bufferList)) { }
                     else Debug.Log("Problem");
 
+                    // Must consume the guardian config to stay aligned with the sender:
+                    // SerializePlayerData writes SerGuardianConfig right after euler, so
+                    // skipping it here shifts every following field and trips the
+                    // "Problem with message length" check in Networking.Update.
+                    GuardianConfig envGuardian;
+                    if (Serialize.DesGuardianConfig(out envGuardian, ref cursor, bufferList)) { }
+                    else Debug.Log("Problem");
+
                     break;
 
                 }
