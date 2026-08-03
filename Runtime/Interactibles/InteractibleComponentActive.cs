@@ -23,14 +23,30 @@ namespace Muco {
 
         public void SetIsActiveAndSend(bool isActive)
         {
+            if (localOnly)
+            {
+                active = isActive;
+                return;
+            }
             active = isActive;
             interactible.SendState(true);
         }
 
         public void ToggleIsActiveAndSend()
         {
+            if (localOnly)
+            {
+                active = !active;
+                return;
+            }
             active = !active;
             interactible.SendState(true);
+        }
+
+        // Sets active on this client only, without claiming ownership or broadcasting state.
+        public void SetIsActiveLocal(bool isActive)
+        {
+            active = isActive;
         }
 
     }
