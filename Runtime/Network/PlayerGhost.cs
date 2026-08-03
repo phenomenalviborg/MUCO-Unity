@@ -19,6 +19,8 @@ namespace Muco {
         public bool isVisible;
         public bool leftHandHasTracking;
         public bool rightHandHasTracking;
+        public string buildVersion = "";
+        public string buildGUID = "";
 
         public List<byte> networkDataBuffer;
         public bool initialized;
@@ -248,6 +250,22 @@ namespace Muco {
                         return;
                     float audio_volume;
                     Serialize.DesFloat(out audio_volume, ref cursor, bufferList);
+                    break;
+                }
+                case PlayerDataType.BuildVersion: {
+                    if (cursor >= bufferList.Length)
+                        return;
+                    string version;
+                    if (Serialize.DesString(out version, ref cursor, bufferList))
+                        buildVersion = version;
+                    else
+                        Debug.Log("Problem");
+
+                    string guid;
+                    if (Serialize.DesString(out guid, ref cursor, bufferList))
+                        buildGUID = guid;
+                    else
+                        Debug.Log("Problem");
                     break;
                 }
                 default: {

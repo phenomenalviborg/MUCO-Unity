@@ -198,7 +198,7 @@ namespace Muco {
                     serverConnection.connectedToServer = true;
                     if (!serverConnection.hasSentNetworkVersion) {
                         var initialMessage = new List<byte>();
-                        byte[] network_version_msg = {0, 0, 6};
+                        byte[] network_version_msg = {0, 0, 7};
                         Debug.Log("sending network version: " + network_version_msg[0] + "." + network_version_msg[1] + "." + network_version_msg[2]);
                         initialMessage.AddRange(network_version_msg);
                         Serialize.SerI32(GetUniqueDeviceInt(), initialMessage);
@@ -362,6 +362,10 @@ namespace Muco {
                 case PlayerDataType.AudioVolume:
                     var volume = VolumeService.SystemVolume;
                     Serialize.SerFloat(volume, buffer);
+                    break;
+                case PlayerDataType.BuildVersion:
+                    Serialize.SerString(Application.version, buffer);
+                    Serialize.SerString(Application.buildGUID, buffer);
                     break;
             }
         }

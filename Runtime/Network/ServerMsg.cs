@@ -36,6 +36,7 @@ namespace Muco {
         IsVisible,
         DeviceStats,
         AudioVolume,
+        BuildVersion,
         Count,
     }
 
