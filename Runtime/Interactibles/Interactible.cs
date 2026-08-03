@@ -66,8 +66,11 @@ namespace Muco {
 
         public void SendStateWeak() {
             var buffer = new List<byte> { prefabIndex };
-            foreach (var component in GetComponents<InteractibleComponentBase>())
+            foreach (var component in GetComponents<InteractibleComponentBase>()) {
+                if (component.localOnly)
+                    continue;
                 component.Ser(buffer);
+            }
             Networking.TheNetworking.TrySendDataAndMemoize(id.roomId, id.creatorId, id.interactibleId, buffer.ToArray());
         }
 
@@ -75,6 +78,8 @@ namespace Muco {
             int cursor = 1;
             var components = GetComponents<InteractibleComponentBase>();
             foreach (var component in components) {
+                if (component.localOnly)
+                    continue;
                 component.Des(ref cursor, buffer);
             }
         }
