@@ -179,6 +179,10 @@ namespace Muco {
             diff = new List<byte>();
 
             resolveIpPrev = resolveIp;
+
+            if (resolveIp == null) {
+                Debug.LogError("Networking.resolveIp is not assigned. The application will not be able to connect to the server or receive an Antilatency environment code.");
+            }
         }
 
         void Update() {
@@ -211,21 +215,26 @@ namespace Muco {
                 else {
                     reconnectTimer -= Time.deltaTime;
                     if (reconnectTimer <= 0) {
-                        try {
-                            var address = resolveIp.Poll();
-                            if (address == null) {
-                                reconnectTimer = 0;
-                                VrDebug.SetValue("Networking", "reconnect in", "waiting for ip");
+                        if (resolveIp == null) {
+                            VrDebug.SetValue("Networking", "reconnect in", "missing resolveIp");
+                        }
+                        else {
+                            try {
+                                var address = resolveIp.Poll();
+                                if (address == null) {
+                                    reconnectTimer = 0;
+                                    VrDebug.SetValue("Networking", "reconnect in", "waiting for ip");
+                                }
+                                if (address != null) {
+                                    serverConnection.client.ConnectAsync(address.ip, address.port);
+                                    reconnectTimer = reconnectTimeout;
+                                }
                             }
-                            if (address != null) {
-                                serverConnection.client.ConnectAsync(address.ip, address.port);
+                            catch (Exception e) {
+                                Debug.Log("Periodic reconnect failed with exception " + e);
+                                ForgetServer();
                                 reconnectTimer = reconnectTimeout;
                             }
-                        }
-                        catch (Exception e) {
-                            Debug.Log("Periodic reconnect failed with exception " + e);
-                            ForgetServer();
-                            reconnectTimer = reconnectTimeout;
                         }
                     }
                     else {

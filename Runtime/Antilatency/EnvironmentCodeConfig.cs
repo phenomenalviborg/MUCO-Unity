@@ -27,9 +27,14 @@ namespace Muco {
                 transform.rotation = Quaternion.Euler(environmentData.euler);
                 VrDebug.SetValue("EnvCode", "code", environmentCode);
 
-                if (environmentCode == null) {
+                if (string.IsNullOrEmpty(environmentCode)) {
                     Debug.Log("Environment Code Not Set using fallback code");
                     environmentCode = fallbackCode;
+                }
+
+                if (string.IsNullOrEmpty(environmentCode)) {
+                    Debug.LogError("No environment code or fallback code configured. Cannot create Antilatency environment.");
+                    return null;
                 }
 
                 try {
