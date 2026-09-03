@@ -14,28 +14,37 @@ namespace Muco
 
         [TextArea]
         public string Deutsch;
-        // Might want to do this dynamically based on Language
+
+        [Tooltip("Optional per-language text file. When assigned, it takes precedence over the inline string.")]
+        public TextAsset danskFile;
+        [Tooltip("Optional per-language text file. When assigned, it takes precedence over the inline string.")]
+        public TextAsset englishFile;
+        [Tooltip("Optional per-language text file. When assigned, it takes precedence over the inline string.")]
+        public TextAsset deutschFile;
 
         public void SelectLanguage(Language language)
         {
             var textComponent = GetComponent<TMPro.TextMeshPro>();
 
+            string text;
             switch (language)
             {
                 case Language.English:
-                    textComponent.text = English.Replace('\n', '\u000a').Replace('\t', '\t');
+                    text = englishFile != null ? englishFile.text : English;
                     break;
                 case Language.Dansk:
-                    textComponent.text = Dansk.Replace('\n', '\u000a').Replace('\t', '\t');
+                    text = danskFile != null ? danskFile.text : Dansk;
                     break;
                 case Language.Deutsch:
-                    textComponent.text = Deutsch.Replace('\n', '\u000a').Replace('\t', '\t');
+                    text = deutschFile != null ? deutschFile.text : Deutsch;
                     break;
                 default:
                     Debug.Log("Unsupported language: " + language);
-                    break;
+                    return;
             }
+
+            textComponent.text = text.Replace('\n', '\u000a').Replace('\t', '\t');
         }
-        
+
     }
 }
