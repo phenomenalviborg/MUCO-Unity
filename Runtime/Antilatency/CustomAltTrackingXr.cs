@@ -1,8 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.XR;
 
 namespace Muco
 {
     public class CustomAltTrackingXr : AltTrackingXr {
+        [Tooltip("Automatically recreate the tracking alignment once valid Alt + HMD data are available, removing the need for a manual pause/unpause cycle.")]
+        public bool autoRecalibrate = true;
+
         public enum PlacementPreset {
             FromService,
             Identity,
@@ -13,6 +18,56 @@ namespace Muco
         }
 
         public PlacementPreset placementPreset;
+
+        private bool _autoRecalibrated;
+
+        protected override void Awake() {
+            base.Awake();
+            _autoRecalibrated = false;
+            if (autoRecalibrate) {
+                StartCoroutine(AutoRecalibrateRoutine());
+            }
+        }
+
+        private IEnumerator AutoRecalibrateRoutine() {
+            var wait = new WaitForSecondsRealtime(0.3f);
+            while (!_autoRecalibrated) {
+                if (ShouldAutoRecalibrate()) {
+                    OnFocusChanged(false);
+                    OnFocusChanged(true);
+                    _autoRecalibrated = true;
+                    yield break;
+                }
+                yield return wait;
+            }
+        }
+
+        private bool ShouldAutoRecalibrate() {
+            if (!TryGetTrackingConfidence(out float confidence) || confidence < MinimalAQualityToAlign) {
+                return false;
+            }
+
+            var centerEye = InputDevices.GetDeviceAtXRNode(XRNode.CenterEye);
+            if (!centerEye.isValid) {
+                return false;
+            }
+
+            if (!centerEye.TryGetFeatureValue(CommonUsages.userPresence, out bool userPresence) || !userPresence) {
+                return false;
+            }
+
+            if (!centerEye.TryGetFeatureValue(CommonUsages.trackingState, out InputTrackingState state)) {
+                return false;
+            }
+
+            return state.HasFlag(InputTrackingState.Rotation);
+        }
+
+        public void ForceRecalibrate() {
+            OnFocusChanged(false);
+            OnFocusChanged(true);
+            _autoRecalibrated = true;
+        }
 
         protected override Pose GetPlacement() {
             switch (placementPreset) {
