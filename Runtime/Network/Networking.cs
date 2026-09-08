@@ -368,7 +368,14 @@ namespace Muco {
                     Serialize.SerString(Application.version, buffer);
                     int bundleVersionCode = -1;
 #if UNITY_ANDROID
-                    bundleVersionCode = (int)UnityEngine.Application.bundleVersionCode;
+                    try {
+                        using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+                        using (var activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
+                        using (var pm = activity.Call<AndroidJavaObject>("getPackageManager"))
+                        using (var info = pm.Call<AndroidJavaObject>("getPackageInfo", activity.Call<string>("getPackageName"), 0)) {
+                            bundleVersionCode = info.Get<int>("versionCode");
+                        }
+                    } catch { }
 #endif
                     Serialize.SerI32(bundleVersionCode, buffer);
                     Serialize.SerString(Application.buildGUID, buffer);
