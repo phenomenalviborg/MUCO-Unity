@@ -364,8 +364,15 @@ namespace Muco {
                     Serialize.SerFloat(volume, buffer);
                     break;
                 case PlayerDataType.BuildVersion:
+                    Serialize.SerString(Application.productName, buffer);
                     Serialize.SerString(Application.version, buffer);
+                    int bundleVersionCode = -1;
+#if UNITY_ANDROID
+                    bundleVersionCode = (int)UnityEngine.Application.bundleVersionCode;
+#endif
+                    Serialize.SerI32(bundleVersionCode, buffer);
                     Serialize.SerString(Application.buildGUID, buffer);
+                    Serialize.SerString(PlatformDetection.ThePlatform.ToString(), buffer);
                     break;
             }
         }

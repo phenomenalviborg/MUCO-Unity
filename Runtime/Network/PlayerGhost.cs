@@ -19,8 +19,11 @@ namespace Muco {
         public bool isVisible;
         public bool leftHandHasTracking;
         public bool rightHandHasTracking;
+        public string buildProductName = "";
         public string buildVersion = "";
+        public int buildBundleVersionCode = -1;
         public string buildGUID = "";
+        public string buildPlatform = "";
 
         public List<byte> networkDataBuffer;
         public bool initialized;
@@ -255,17 +258,25 @@ namespace Muco {
                 case PlayerDataType.BuildVersion: {
                     if (cursor >= bufferList.Length)
                         return;
+                    string productName;
+                    if (Serialize.DesString(out productName, ref cursor, bufferList))
+                        buildProductName = productName;
+
                     string version;
                     if (Serialize.DesString(out version, ref cursor, bufferList))
                         buildVersion = version;
-                    else
-                        Debug.Log("Problem");
+
+                    int bundleVersionCode;
+                    if (Serialize.DesI32(out bundleVersionCode, ref cursor, bufferList))
+                        buildBundleVersionCode = bundleVersionCode;
 
                     string guid;
                     if (Serialize.DesString(out guid, ref cursor, bufferList))
                         buildGUID = guid;
-                    else
-                        Debug.Log("Problem");
+
+                    string platform;
+                    if (Serialize.DesString(out platform, ref cursor, bufferList))
+                        buildPlatform = platform;
                     break;
                 }
                 default: {
