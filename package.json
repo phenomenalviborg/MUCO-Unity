@@ -1,8 +1,8 @@
 {
   "name": "com.phenomenalviborg.muco",
-  "version": "0.1.2",
-  "displayName": "MUCO",
-  "description": "MUCO Core Package",
+  "version": "0.2.0",
+  "displayName": "MUCO Unity",
+  "description": "MUCO Unity Core Package",
   "unity": "6000.0",
   "dependencies": {
     "com.antilatency.alt-tracking-xr": "https://github.com/antilatency/Unity.AltTrackingXrPackage.git",
