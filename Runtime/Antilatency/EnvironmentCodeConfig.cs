@@ -23,6 +23,12 @@ namespace Muco {
 
                 var environmentData = Networking.TheNetworking.GetEnvironmentData();
                 var environmentCode = environmentData.code;
+
+                // Strip null bytes that would truncate the C string on marshal
+                // and crash Antilatency's native deserializer on Android
+                if (!string.IsNullOrEmpty(environmentCode))
+                    environmentCode = environmentCode.Replace("\0", "");
+
                 transform.position = environmentData.pos;
                 transform.rotation = Quaternion.Euler(environmentData.euler);
                 VrDebug.SetValue("EnvCode", "code", environmentCode);
@@ -42,9 +48,16 @@ namespace Muco {
                     VrDebug.SetValue("EnvCode", "could create env", "true");
                 }
                 catch {
-                    _environment = selectorLibrary.createEnvironment("AntilatencyAltEnvironmentHorizontalGrid~AgACBLhTiT_cRqA-r45jvZqZmT4AAAAAAAAAAACamRk_AQEAAgM");
-                    Debug.Log("Problem with environment code: " + enabled);
-                    VrDebug.SetValue("EnvCode", "could create env", "false");
+                    Debug.LogWarning("Failed to create environment with code, trying fallback. Code starts with: " + environmentCode[..Mathf.Min(20, environmentCode.Length)]);
+                    try {
+                        _environment = selectorLibrary.createEnvironment("AntilatencyAltEnvironmentHorizontalGrid~AgACBLhTiT_cRqA-r45jvZqZmT4AAAAAAAAAAACamRk_AQEAAgM");
+                        VrDebug.SetValue("EnvCode", "could create env", "false");
+                    }
+                    catch (System.Exception fallbackEx) {
+                        Debug.LogError("Fallback environment creation also failed: " + fallbackEx.Message);
+                        VrDebug.SetValue("EnvCode", "could create env", "fallback_failed");
+                        return null;
+                    }
                 }
 
                 if (_environment == null) {

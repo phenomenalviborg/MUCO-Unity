@@ -48,6 +48,15 @@ namespace Muco {
         }
 
         void Setup() {
+            if (player == null) {
+                Debug.LogError("Player reference is null, cannot setup Antilatency");
+                return;
+            }
+            if (vrInput == null) {
+                Debug.LogError("vrInput reference is null, cannot setup Antilatency");
+                return;
+            }
+
             player.gameObject.SetActive(false);
             vrInput.SetActive(false);
 
