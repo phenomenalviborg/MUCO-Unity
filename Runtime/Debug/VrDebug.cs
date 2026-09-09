@@ -18,6 +18,8 @@ namespace Muco
 
         public static VrDebug TheMucoVrDebug;
 
+        public bool isLogStreamingEnabled;
+
         public bool nextCategoryButtonWasPressed;
         public bool prevCategoryButtonWasPressed;
 
@@ -181,6 +183,25 @@ namespace Muco
                 log.RemoveAt(0);
 
             UpdateLogText();
+
+            // Forward to manager if log streaming is enabled
+            if (isLogStreamingEnabled)
+            {
+                var net = Networking.TheNetworking;
+                if (net != null)
+                {
+                    byte level = (byte)LogType.Log;
+                    switch (type)
+                    {
+                        case LogType.Error: level = 2; break;
+                        case LogType.Assert: level = 3; break;
+                        case LogType.Exception: level = 4; break;
+                        case LogType.Warning: level = 1; break;
+                        default: level = 0; break;
+                    }
+                    net.TryNotifyDeviceLog(level, logString, stackTrace);
+                }
+            }
         }
 
         void UpdateLogText()

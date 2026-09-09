@@ -37,6 +37,7 @@ namespace Muco {
         DeviceStats,
         AudioVolume,
         BuildVersion,
+        DeviceLogEntry,
         Count,
     }
 

@@ -282,6 +282,7 @@ namespace Muco {
         public void SerializeAllPlayerData(List<byte> buffer) {
             for (int i = 0; i < (int)PlayerDataType.Count; i++) {
                 var dataType = (PlayerDataType)i;
+                if (dataType == PlayerDataType.DeviceLogEntry) continue;
                 SerializePlayerData(dataType, buffer);
             }
         }
@@ -381,6 +382,9 @@ namespace Muco {
                     Serialize.SerString(Application.buildGUID, buffer);
                     Serialize.SerString(PlatformDetection.ThePlatform.ToString(), buffer);
                     break;
+                case PlayerDataType.DeviceLogEntry:
+                    // DeviceLog is Notify-only, not serialized in AllPlayerData/Diff
+                    break;
             }
         }
 
@@ -389,6 +393,16 @@ namespace Muco {
             Serialize.SerI32((int)DataOperationType.Notify, buffer);
             Serialize.SerI32((int)dataType, buffer);
             SerializePlayerData(dataType, buffer);
+            return serverConnection.TrySendTaggedBuffer(BinaryMessageType.TaggedPlayerData, buffer, BroadcastType.Other, serverConnection.clientId);
+        }
+
+        public bool TryNotifyDeviceLog(byte level, string message, string stackTrace) {
+            var buffer = new List<byte>();
+            Serialize.SerI32((int)DataOperationType.Notify, buffer);
+            Serialize.SerI32((int)PlayerDataType.DeviceLogEntry, buffer);
+            Serialize.SerU8(level, buffer);
+            Serialize.SerString(message, buffer);
+            Serialize.SerString(stackTrace, buffer);
             return serverConnection.TrySendTaggedBuffer(BinaryMessageType.TaggedPlayerData, buffer, BroadcastType.Other, serverConnection.clientId);
         }
 
@@ -685,6 +699,23 @@ namespace Muco {
                         return;
                     }
                     VolumeService.SystemVolume = audio_volume;
+                    break;
+                }
+                case PlayerDataType.DeviceLogEntry: {
+                    byte controlByte;
+                    if (!Serialize.DesU8(out controlByte, ref cursor, buffer))
+                        return;
+                    // Consume message and stack_trace strings
+                    string _msg, _trace;
+                    if (!Serialize.DesString(out _msg, ref cursor, buffer))
+                        return;
+                    if (!Serialize.DesString(out _trace, ref cursor, buffer))
+                        return;
+                    bool enableLogging = controlByte == 255;
+                    if (VrDebug.TheMucoVrDebug != null) {
+                        VrDebug.TheMucoVrDebug.isLogStreamingEnabled = enableLogging;
+                        Debug.Log($"Device log streaming {(enableLogging ? "enabled" : "disabled")}");
+                    }
                     break;
                 }
                 default:
