@@ -114,6 +114,26 @@ namespace Muco
             File.WriteAllText(outputPath, content);
             AssetDatabase.Refresh();
 
+            // --- Update package.json description --------------------------------
+            const string descriptionKey = "\"description\": \"";
+            int descIdx = json.IndexOf(descriptionKey, StringComparison.Ordinal);
+            if (descIdx >= 0)
+            {
+                int descStart = descIdx + descriptionKey.Length;
+                int descEnd   = json.IndexOf("\"", descStart, StringComparison.Ordinal);
+                if (descEnd > descStart)
+                {
+                    string newDesc = $"MUCO Core Package v{version} (commit {commit})";
+                    string oldDesc = json.Substring(descStart, descEnd - descStart);
+                    if (oldDesc != newDesc)
+                    {
+                        string updatedJson = json.Substring(0, descStart) + newDesc + json.Substring(descEnd);
+                        File.WriteAllText(packageJsonPath, updatedJson);
+                        AssetDatabase.Refresh();
+                    }
+                }
+            }
+
             UnityEngine.Debug.Log(
                 $"[MucoPackageInfoGenerator] Generated {outputPath}: Version={version}, Commit={commit}"
             );
