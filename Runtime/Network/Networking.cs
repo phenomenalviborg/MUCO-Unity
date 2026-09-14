@@ -198,7 +198,7 @@ namespace Muco {
                     serverConnection.connectedToServer = true;
                     if (!serverConnection.hasSentNetworkVersion) {
                         var initialMessage = new List<byte>();
-                        byte[] network_version_msg = {0, 0, 7};
+                        byte[] network_version_msg = {0, 0, 8};
                         Debug.Log("sending network version: " + network_version_msg[0] + "." + network_version_msg[1] + "." + network_version_msg[2]);
                         initialMessage.AddRange(network_version_msg);
                         Serialize.SerI32(GetUniqueDeviceInt(), initialMessage);
@@ -381,6 +381,8 @@ namespace Muco {
                     Serialize.SerI32(bundleVersionCode, buffer);
                     Serialize.SerString(Application.buildGUID, buffer);
                     Serialize.SerString(PlatformDetection.ThePlatform.ToString(), buffer);
+                    Serialize.SerString(MucoPackageInfo.Version, buffer);
+                    Serialize.SerString(MucoPackageInfo.Commit, buffer);
                     break;
                 case PlayerDataType.DeviceLogEntry:
                     // DeviceLog is Notify-only, not serialized in AllPlayerData/Diff
