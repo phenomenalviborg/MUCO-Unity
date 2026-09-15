@@ -8,6 +8,12 @@ namespace Muco {
         [HideInInspector] public RoomExtension[] extensions;
         List<Interactible> preMadeInteractibles;
         public List<Interactible> interactiblePrefabs;
+
+        [Tooltip("When enabled, supported languages are discovered from text boxes in this room.")]
+        public bool autoDetectLanguages = true;
+        [Tooltip("Optional explicit BCP47 tags, for example en-GB or da-DK.")]
+        public List<string> supportedLanguageTags = new List<string>();
+
         ushort interactibleIdCounter;
 
         public UnityEvent AfterInit;
@@ -86,6 +92,29 @@ namespace Muco {
             foreach(var extension in extensions) {
                 extension.UpdateLanguage(language);
             }
+        }
+
+        public bool SupportsLanguage(string languageTag) {
+            if (autoDetectLanguages || supportedLanguageTags.Count == 0)
+                return true;
+
+            var normalizedTag = MultiLangTextBox.NormalizeTag(languageTag);
+            if (string.IsNullOrEmpty(normalizedTag))
+                return false;
+            foreach (var supportedTag in supportedLanguageTags) {
+                if (MultiLangTextBox.NormalizeTag(supportedTag) == normalizedTag)
+                    return true;
+            }
+
+            return false;
+        }
+
+        public string ResolveLanguage(string languageTag) {
+            var normalizedTag = MultiLangTextBox.NormalizeTag(languageTag);
+            if (SupportsLanguage(normalizedTag))
+                return normalizedTag;
+
+            return "en-GB";
         }
 
         public void ProcessDataNotify(uint key, byte[] data) {
