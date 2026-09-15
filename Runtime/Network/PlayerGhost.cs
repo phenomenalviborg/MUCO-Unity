@@ -191,8 +191,8 @@ namespace Muco {
                     break;
                 }
                 case PlayerDataType.Language: {
-                    int language;
-                    if (Serialize.DesI32(out language, ref cursor, bufferList)) {
+                    string language;
+                    if (Serialize.DesString(out language, ref cursor, bufferList)) {
 
                     }
                     else

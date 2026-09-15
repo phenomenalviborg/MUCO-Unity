@@ -334,7 +334,7 @@ namespace Muco {
                     Serialize.SerBool(isVisible, buffer);
                     break;
                 case PlayerDataType.Language:
-                    Serialize.SerI32((int)Player.ThePlayer.language, buffer);
+                    Serialize.SerString(Player.ThePlayer.language.ToBcp47(), buffer);
                     break;
                 case PlayerDataType.EnvironmentData:
                     var envData = GetEnvironmentData();
@@ -606,12 +606,12 @@ namespace Muco {
                     break;
                 }
                 case PlayerDataType.Language: {
-                    int languageIndex;
-                    if (!Serialize.DesI32(out languageIndex, ref cursor, buffer)) {
+                    string languageTag;
+                    if (!Serialize.DesString(out languageTag, ref cursor, buffer)) {
                         Debug.Log("Problem Setting Language");
                         return;
                     }
-                    var language = (Language)languageIndex;
+                    var language = LanguageExtensions.FromBcp47(languageTag);
                     Player.ThePlayer.language = language;
                     foreach (var room in RoomManager.TheRoomManager.rooms) {
                         if (room) {
