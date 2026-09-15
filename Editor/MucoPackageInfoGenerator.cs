@@ -94,7 +94,7 @@ namespace Muco.Editor
                 commit = "unknown";
 
             // --- Write the generated file --------------------------------------
-            string generatedDir = Path.Combine(packageRoot, "Runtime", "Generated");
+            string generatedDir = Path.Combine(packageRoot, "Runtime", "Network");
             Directory.CreateDirectory(generatedDir);
             string outputPath = Path.Combine(generatedDir, "MucoPackageInfo.cs");
 
