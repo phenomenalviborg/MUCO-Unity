@@ -387,6 +387,12 @@ namespace Muco {
                 case PlayerDataType.DeviceLogEntry:
                     // DeviceLog is Notify-only, not serialized in AllPlayerData/Diff
                     break;
+                case PlayerDataType.SupportedLanguages:
+                    var tags = RoomManager.TheRoomManager.GetSupportedLanguageTags();
+                    Serialize.SerI32(tags.Count, buffer);
+                    foreach (var tag in tags)
+                        Serialize.SerString(tag, buffer);
+                    break;
             }
         }
 
@@ -717,6 +723,17 @@ namespace Muco {
                     if (VrDebug.TheMucoVrDebug != null) {
                         VrDebug.TheMucoVrDebug.isLogStreamingEnabled = enableLogging;
                         Debug.Log($"Device log streaming {(enableLogging ? "enabled" : "disabled")}");
+                    }
+                    break;
+                }
+                case PlayerDataType.SupportedLanguages: {
+                    int count;
+                    if (!Serialize.DesI32(out count, ref cursor, buffer))
+                        return;
+                    for (int i = 0; i < count; i++) {
+                        string tag;
+                        if (!Serialize.DesString(out tag, ref cursor, buffer))
+                            return;
                     }
                     break;
                 }

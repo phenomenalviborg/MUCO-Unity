@@ -79,5 +79,24 @@ namespace Muco {
                 staticRooms = combinedRooms;
             }
         }
+
+        /// <summary>
+        /// Returns the union of explicit supportedLanguageTags from all rooms that have
+        /// auto-detect disabled. When no room has explicit tags, returns an empty list
+        /// (frontend falls back to all known languages).
+        /// </summary>
+        public System.Collections.Generic.List<string> GetSupportedLanguageTags()
+        {
+            var allTags = new System.Collections.Generic.HashSet<string>();
+            foreach (var room in rooms)
+            {
+                if (room != null && !room.autoDetectLanguages && room.supportedLanguageTags != null)
+                {
+                    foreach (var tag in room.supportedLanguageTags)
+                        allTags.Add(tag);
+                }
+            }
+            return allTags.ToList();
+        }
     }
 }
